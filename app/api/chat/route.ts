@@ -4,7 +4,16 @@ import { streamText } from "ai";
 export const maxDuration = 30;
 
 export async function POST (req: Request) {
-    const {messages} = await req.json();
+    const body = await req.json();
+
+    const messages = [
+    {
+      role: "system",
+      content:
+        "You are an assistant who always breaks down your reasoning before giving an answer. Output two parts: reasoning and answer.",
+    },
+    ...body.messages,
+  ];
 
     const result = streamText(
         {
