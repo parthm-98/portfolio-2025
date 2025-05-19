@@ -39,8 +39,10 @@ export default function Chat() {
               }
 
               // AI message parsing logic
-              const reasoningMatch = part.text.match(/Reasoning:(.*)Answer:/);
-              const answerMatch = part.text.match(/Answer:(.*)/);
+              const reasoningMatch = part.text.match(
+                /Reasoning:([\s\S]*?)Answer:/
+              );
+              const answerMatch = part.text.match(/Answer:([\s\S]*)/);
 
               const reasoning = reasoningMatch
                 ? reasoningMatch[1].trim()
